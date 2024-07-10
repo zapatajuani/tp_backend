@@ -5,8 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chee Burgers | Admin</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="icons/burger.ico" type="image/x-icon">
 </head>
 <body>
-    Admin Pagee
+    <div class="loader"></div>
+
+    <!-- HEADER -->
+    <header>
+        <span class="logo">
+            <img class="nombre" src="img/logos/letras.png" alt="Chee-Burgers">
+        </span>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-link" id="h-menu">
+                    <a href="index.html">Pedidos</a>
+                </li>
+                <li class="nav-link" id="h-horarios">
+                    <a href="">Consultas</a>
+                </li>
+                <li class="nav-link" id="h-contactos">
+                    <a href="">Salir</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-icon">
+            <i class="bi bi-list"></i>
+        </div>
+    </header>
+
+    <div class="main" id="main-container">
+        
+        <div class="pedido">
+
+            <div class="divisores">
+                <p class="titulo">Pedido</p>
+                <p class="pedio-elemento">Burga x1</p>
+            </div>
+
+            <div class="divisores">
+                <p class="titulo">Datos</p>
+                <p class="titulo">Nombre y Apellido</p>
+                <p class="titulo">Juan Ignacio Zapata</p>
+                <p class="titulo">TEL</p>
+                <p class="titulo">1234646</p>
+            </div>
+
+            <div class="divisores">
+                <button>ELIMINAR</button>
+                <button>EDITAR</button>
+            </div>
+
+        </div>
+       
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>

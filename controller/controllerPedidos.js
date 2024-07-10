@@ -1,13 +1,12 @@
 const db = require("../db/db")
 
 const listaPedido = (req, res) => {
-    db.listarPedidos()
-    res.send("Listado exitoso")
+    db.listarPedidos(res)
 }
 
 const altaPedido = (req, res) => {
     const data = req.body
-    db.altaPedido(data)
+    a = db.altaPedido(data)
     res.send("Alta exitosa!")
 }
 

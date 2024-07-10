@@ -1,5 +1,6 @@
 const db = require("mysql2")
 const fs = require("fs")
+const uuid = require("uuid")
 const dotenv = require("dotenv")
 dotenv.configDotenv()
 
@@ -65,7 +66,7 @@ const initTables = () => {
 
 // ------ METODOS PARA PEDIDOS ----------------------
 
-const listarPedidos = () => {
+const listarPedidos = (res) => {
     const connection = newConn()
     const query = `SELECT * FROM pedidos`
 
@@ -76,9 +77,8 @@ const listarPedidos = () => {
             throw err
         }
 
-        console.log(rows)
+        res.json(rows) 
     })
-
     connection.end()
 }
 
@@ -86,10 +86,11 @@ const altaPedido = (data) => {
     const connection = newConn()
 
     const query = `INSERT INTO pedidos
-    (nombre, apellido, calle, numero, piso, tel, delivery, json_products)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    (uuid, nombre, apellido, calle, numero, piso, tel, delivery, json_products)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     const values = [
+        uuid.v6(),
         data.nombre,
         data.apellido,
         data.calle,
@@ -194,10 +195,11 @@ const altaConsulta = (data) => {
     const connection = newConn()
 
     const query = `INSERT INTO consultas
-    (nombre, apellido, mail, motivo, mensaje)
-    VALUES (?, ?, ?, ?, ?)`
+    (uuid, nombre, apellido, mail, motivo, mensaje)
+    VALUES (?, ?, ?, ?, ?, ?)`
 
     const values = [
+        uuid.v6(),
         data.nombre,
         data.apellido,
         data.mail,

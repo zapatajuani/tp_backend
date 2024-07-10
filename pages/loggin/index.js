@@ -23,7 +23,6 @@ form.addEventListener("submit", (e) => {
     }
 
     const formData = new FormData(form)
-
     mainContainer.classList.toggle("waiting")
 
     fetch('http://127.0.0.1:8000/test_post', {
@@ -38,17 +37,13 @@ form.addEventListener("submit", (e) => {
 
         const res = JSON.parse(data)
 
-        console.log(res)
-
         if (res.code == 401 && errM.classList.contains("hide")) {
             errM.classList.toggle("hide")
+            mainContainer.classList.toggle("waiting")
         } else if (res.code == 200) {
             errM.classList.toggle("hide")
-            console.log(res.redirect)
+            mainContainer.classList.toggle("waiting")
             window.location.href = res.redirect
         }
-
     })
-
-    mainContainer.classList.toggle("waiting")
 })
