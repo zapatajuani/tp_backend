@@ -1,0 +1,29 @@
+.contenedor-principal {
+    flex-grow: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacto {
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    background-color: #454353;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contacto p {
+    text-align: justify;
+    font-size: 25px;
+}
+
+.contacto i {
+    color: greenyellow;
+    font-size: 150px;
+}

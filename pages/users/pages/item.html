@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/targetItem.css">
+    <link rel="icon" href="../icons/burger.ico" type="image/x-icon">
+    <title>Chee-Burgers</title>
+</head>
+<body>
+    
+    <div class="item-container">
+        <img class="selected-item-img" src="" alt="">
+        <h4 class="selected-item-title"></h4>
+        <p class="selected-item-desc"></p>
+        <span class="selected-item-price"></span>
+
+        <span class="button-area">
+            <button id="minus" class="action minus" type="button">-</button>
+            <span class="quantity">1</span>
+            <button id="plus" class="action plus" type="button">+</button>
+            <span class="total"></span>
+        </span>
+
+        <button id="add" class="actions-btns add" type="button">Agregar</button>
+        <button id="volver" class="actions-btns volver" type="button">Volver</button>
+
+    </div>
+
+    <script src="../scripts/loadEnvVars.js"></script>
+    <script src="../scripts/formatPrecio.js"></script>
+    <script src="../scripts/dicc.js"></script>
+    <script src="../scripts/itemInit.js"></script>
+    <script src="../scripts/itemBehaivour.js"></script>
+</body>
+</html>

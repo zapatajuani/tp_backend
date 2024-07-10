@@ -1,0 +1,137 @@
+* {
+    font-size: 25px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.item-container {
+    height: 100%;
+    width: 600px;
+
+    margin: 20px;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.selected-item-img {
+    border-radius: 5px;
+}
+
+.selected-item-desc {
+    text-align: justify;
+}
+
+.selected-item-price {
+    margin-left: auto;
+}
+
+.button-area {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+button {
+    border-radius: 10px;
+    color: var(--primary-color);
+    border-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.minus,
+.plus {
+    height: 40px;
+    width: 100px;
+}
+
+.actions-btns {
+    height: 50px;
+    width: 600px;
+}
+
+.add {
+    background-color: #db3939;
+}
+
+.volver {
+    background-color: #7AEA94;
+}
+
+/* ---------- Hover ------------- */
+
+.action:hover {
+    background-color: #D7E8DA;
+    transition: background-color 0.3s ease;
+}
+
+.add:hover {
+    background-color: #DC6A6A;
+    transition: background-color 0.3s ease;
+}
+
+.volver:hover {
+    background-color: #ACEAC0;
+    transition: background-color 0.3s ease;
+}
+
+
+/* -------------- Tablets -------------- */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .item-container {
+        margin: 20px 0px 20px 0px;
+        width: 500px;
+    }
+
+    .selected-item-price {
+        margin-left: 55%;
+    }
+
+    .selected-item-img,
+    .button-area,
+    .add,
+    .volver {
+        width: 80%;
+    }
+}
+
+/* ------------- Celulares -------------- */
+
+@media (max-width: 600px) {
+
+    .item-container {
+        width: 400px;
+        gap: 25px;
+        margin: 20px 0px 20px 0px;
+    }
+
+    .selected-item-price {
+        margin-left: 55%;
+    }
+
+    .total {
+        display: none;
+    }
+
+    .selected-item-img,
+    .button-area,
+    .add,
+    .volver {
+        width: 80%;
+    }
+}

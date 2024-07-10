@@ -1,0 +1,258 @@
+* {
+    box-sizing: border-box;
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.carrito-container {
+    flex-grow: 1;
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.lista-elementos-container,
+.form-container {
+    flex-grow: 0.25;
+    height: 100%;
+    border-radius: 5px;
+    background-color:#454353;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    width: 100%;
+    margin: 20px;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.r-btn-container {
+    height: auto;
+    width: 90%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    border-radius: 15px;
+
+}
+
+.r-btn {
+    display: none;
+}
+
+.r-btn-lbl {
+    width: 90%;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    color: #454353;
+    background-color: #7AEA94;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.r-btn-lbl:hover {
+    background-color: #ACEAC0;
+    transition: background-color 0.5s ease;
+}
+
+.clicked {
+    background-color: #ACEAC0;
+}
+
+input, button {
+    width: 90%;
+    height: 40px;
+    background-color: #595668;
+    border: 0.5px solid transparent;
+    padding: 2px;
+    border-radius: 5px;
+    color: #ABABAE;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+    color: #454353;
+    cursor: pointer;
+    background-color: #7AEA94;
+    transition: background-color 0.5s ease;
+}
+
+button:hover {
+    background-color: #ACEAC0;
+    transition: background-color 0.5s ease;
+}
+
+/* --------------------------------------------- */
+
+.lista-elementos-container {
+    padding: 0px 30px 0px 30px;
+    width: 20%;
+}
+
+.tittle-list {
+    margin: 30px 0px 0px 0px; 
+    font-size: 25px;
+    flex-grow: 0.1;
+    margin-right: auto;
+}
+
+.lista-elementos {
+    width: 100%;
+    flex-grow: 0.9;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.list-item {
+    width: 100%;
+    margin: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: 500;
+    flex-grow: 0.1;
+    margin-left: auto;
+}
+
+/* -------------------------------------- */
+
+.error {
+    width: 90%;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px;
+    color: #DC3232;
+    background-color: #FFC4C4;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+/* ------------------- Tablets ------------------------- */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .carrito-container {
+        flex-direction: column;
+    }
+
+    .lista-elementos-container {
+        width: 90%;
+        gap: 1px;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+
+    form {
+        margin: 0;
+        margin: 20px;
+    }
+    
+    .tittle-list,
+    .total,
+    .list-item {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+    }
+
+    .tittle-list {
+        margin-top: 10px;
+        font-size: 25px;
+        margin-right: auto;
+    }
+
+    .total {
+        margin-left: auto;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+}
+
+/* ----------------- Celulares ---------------------- */
+
+@media (max-width: 600px) {
+    .carrito-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+
+    .lista-elementos-container {
+        width: 90%;
+        gap: 10px;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+
+    form {
+        margin: 0;
+        margin: 20px;
+    }
+    
+    .tittle-list,
+    .total,
+    .list-item {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+    }
+
+    .tittle-list {
+        margin-top: 10px;
+        font-size: 25px;
+        margin-right: auto;
+    }
+
+    .total {
+        margin-left: auto;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+}

@@ -1,0 +1,25 @@
+.about-us {
+    flex-grow: 1;
+    margin: 20px;
+    width: 40%;
+    text-align: justify;
+    font-size: 25px;
+}
+
+/* -------------- Tablets -------------- */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .about-us {
+        width: auto;
+        font-size: medium;
+    }
+}
+
+/* ------------- Celulares -------------- */
+
+@media (max-width: 600px) {
+    .about-us {
+        width: 90%;
+        font-size: small;
+    }
+}

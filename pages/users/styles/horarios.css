@@ -1,0 +1,65 @@
+.horarios {
+    flex-grow: 1;
+    font-size: 30px;
+
+    background-color: #38383D;
+
+    margin: 10px;
+
+    border-radius: 5px;
+
+    width: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.horarios h4 {
+    margin-right: auto;
+    padding: 10px 0px 40px 30px;
+}
+
+.horarios div {
+    width: 70%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
+}
+
+.dia {
+    margin-right: auto;
+}
+
+/* ------------------- Tablets ------------------------- */
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .horarios {
+        font-size: 15px;
+    }
+}
+
+/* ----------------- Celulares ---------------------- */
+
+@media (max-width: 600px) {
+    .horarios {
+        font-size: 15px;
+        width: 90%;
+    }
+
+    .horarios div {
+        width: 85%;
+
+        margin: 20px 10px;
+    
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        flex-direction: row;
+    }
+
+}

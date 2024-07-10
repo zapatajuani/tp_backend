@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chee Burgers | Admin</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="loader loader--hiden"></div>
+    <div class="main" id="loggin-container">
+        <h3 class="input-field titulo" >Ingrese con su usuario y contraseña</h3>
+
+        <form id="loggin-form">
+            <label for="user"></label>
+            <input class="input-field entrada" type="text" name="user" id="user" placeholder="Usuario...">
+
+            <label for="password"></label>
+            <input class="input-field entrada" type="password" name="password" autocomplete="on" id="password" placeholder="Contraseña...">
+
+            <button type="submit" class="input-field boton" id="submit">ENVIAR</button>
+            <span class="input-field message-error hide" id="input-error">Usuario y/o contraseña incorrecto</span>
+        </form>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

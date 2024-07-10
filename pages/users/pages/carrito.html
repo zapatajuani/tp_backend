@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/carrito.css">
+    <link rel="icon" href="../icons/burger.ico" type="image/x-icon">
+    <title>Chee-Burgers</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="logo">
+                <img class="nombre" src="../img/logos/letras.png" alt="Chee-Burgers">
+            </span>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-link" id="h-menu"><a href="../index.html">Menu</a></li>
+                    <li class="nav-link" id="h-horarios"><a href="horarios.html">Horarios</a></li>
+                    <li class="nav-link" id="h-contactos"><a href="sobreNosotros.html">Sobre Nosotros</a></li>
+                    <li class="nav-link" id="h-compra-online"><a href="carrito.html">Carrito</a></li>
+                </ul>
+            </nav>
+            <div class="menu-icon">
+                <i class="bi bi-list"></i>
+            </div>
+        </header>
+
+        <div class="carrito-container">
+
+            <div class="lista-elementos-container">
+                <h4 class="tittle-list">Lista</h4>
+                <ul class="lista-elementos"></ul>
+                <p class="total"></p>
+            </div>
+
+            <div class="form-container">
+                <form id="form-paga">  
+                    <span class="r-btn-container">
+                        <label class="r-btn-lbl" id="delivery-lbl" for="delivery-btn">Delivery</label>
+                        <input class="r-btn" type="radio" name="type-of-deliver" id="delivery-btn" value="delivery">
+
+                        <label class="r-btn-lbl" id="takeaway-lbl" for="takeaway-btn">Takeaway</label>
+                        <input class="r-btn" type="radio" name="type-of-deliver" id="takeaway-btn" value="takeaway">
+                    </span>
+
+                    <label class="sr-only" for="nombre">Nombre</label>
+                    <input id="nombre" title="nombre" type="text" name="nombre" placeholder="Nombre...">
+
+                    <label class="sr-only" for="apellido">Apellido</label>
+                    <input id="apellido" title="apellido" type="text" name="apellido" placeholder="Apellido...">
+
+                    <label class="sr-only" for="calle">Calle</label>
+                    <input id="calle" title="calle" type="text" name="calle" placeholder="Calle...">
+
+                    <label class="sr-only" for="numero">Numero</label>
+                    <input id="numero" title="numero" type="text" name="numero" placeholder="Numero...">
+
+                    <label class="sr-only" for="piso">Piso</label>
+                    <input id="piso" title="piso" type="text" name="piso" placeholder="Piso...">
+
+                    <label class="sr-only" for="tel">Telefono</label>
+                    <input id="tel" title="tel" type="number" name="tel" placeholder="Telefono...">
+
+                    <button type="submit" class="submit" id="submit">IR A PAGAR</button>
+                    <span id="error-sign" class="error hide">Faltan datos</span>
+                    <span id="error-list" class="error hide">No hay elemeno en la lista</span>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <span class="f-images">
+                <img  class="f-logo" src="../img/logos/logo.jpeg" alt="Chee-Burgers">
+                <span class="socials">
+                    <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.google.com/maps/@-34.6035791,-58.3821666,18z?authuser=0&entry=ttu" aria-label="Maps" rel="noopener" target="_blank">
+                        <i class="bi bi-google"></i>
+                    </a>
+                </span>
+            </span>
+            <div class="f-list-container">
+                <ul class="f-list">
+                    <li><a href="../index.html">Menu</a></li>
+                    <li><a href="horarios.html">Horarios</a></li>
+                    <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contactanos.html">Contactanos</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="../scripts/loadEnvVars.js"></script>
+    <script src="../scripts/menuBar.js"></script>
+    <script src="../scripts/formatPrecio.js"></script>
+    <script src="../scripts/dicc.js"></script>
+    <script src="../scripts/carritoInit.js"></script>
+    <script src="../scripts/forms/carrito.js"></script>
+</body>
+</html>
