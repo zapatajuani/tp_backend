@@ -114,11 +114,11 @@ const altaPedido = (data) => {
     connection.end()
 }
 
-const eliminarPedido = (id) => {
+const eliminarPedido = (uuid) => {
     const connection = newConn()
-    const query = `DELETE FROM pedidos WHERE id_pedido = ?`
+    const query = `DELETE FROM pedidos WHERE uuid = ?`
 
-    const values = [id]
+    const values = [uuid]
 
     connection.query(query, values, (err) => {
     
@@ -144,7 +144,7 @@ const actualizarPedido = (id, data) => {
         piso = ?, 
         tel = ?, 
         delivery = ?, 
-        json_products = ?
+        json_products = ?,
     WHERE id_pedido = ?`
 
     const values = [

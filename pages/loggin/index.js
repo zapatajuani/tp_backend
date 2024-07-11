@@ -25,7 +25,7 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form)
     mainContainer.classList.toggle("waiting")
 
-    fetch('http://127.0.0.1:8000/test_post', {
+    fetch('http://127.0.0.1:8000/loggin/verificacion', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

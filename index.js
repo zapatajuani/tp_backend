@@ -4,6 +4,7 @@ const express = require('express')
 const cors = require("cors")
 const routerPedidos = require("./routes/rutaPedidos")
 const routerConsultas = require("./routes/rutaConsultas")
+const routerLogin = require("./routes/rutaLoggin")
 const db = require("./db/db")
 
 const dotenv = require("dotenv")
@@ -12,30 +13,10 @@ dotenv.configDotenv()
 /* ------------ AJUSTES DEL SERVIDOR ---------- */
 
 const app = express()
-app.disable("x-powered-by")
 app.use(express.json())
 app.use(cors())
 
 /* ------------ RUTAS A PAGINAS --------------- */
-
-app.post("/test_post", (req, res) => {
-    const formData = req.body
-
-    if (formData.user == "Juan" && formData.pass == "zapa") {
-        
-        setTimeout(() => {
-            console.log(formData)
-            res.send({code: 200, body: "succes", redirect: "/admin"})
-        }, 5000)
-
-    } else {
-
-        setTimeout(() => {
-            res.send({code: 401, body: "ERROR"})
-        }, 5000)
-    }
-
-})
 
 app.use("/", express.static("./pages/users"))
 app.use("/loggin", express.static("./pages/loggin"))
@@ -43,6 +24,7 @@ app.use("/admin", express.static("./pages/admin"))
 
 /* ------------ METODOS / ENDPOINTS ----------- */
 
+app.use("/loggin", routerLogin)
 app.use("/pedidos", routerPedidos)
 app.use("/consultas", routerConsultas)
 
