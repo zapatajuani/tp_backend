@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `calle` VARCHAR(64) NULL,
   `numero` VARCHAR(64) NULL,
   `piso` VARCHAR(64) NULL,
-  `tel` INT NOT NULL,
+  `tel` BIGINT NOT NULL,
   `delivery` TINYINT NOT NULL,
   `json_products` JSON NOT NULL
 );
@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   `mensaje` VARCHAR(2048) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `user` VARCHAR(64) NOT NULL,
-  `pass` VARCHAR(64) NOT NULL
+  `user` VARCHAR(64) NOT NULL UNIQUE,
+  `pass` VARCHAR(256) NOT NULL
 );

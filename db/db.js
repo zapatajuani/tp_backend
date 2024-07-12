@@ -82,7 +82,7 @@ const listarPedidos = (res) => {
     connection.end()
 }
 
-const altaPedido = (data) => {
+const altaPedido = (data, res) => {
     const connection = newConn()
 
     const query = `INSERT INTO pedidos
@@ -108,13 +108,14 @@ const altaPedido = (data) => {
             throw err
         } else {
             console.log('Fila insertada!')
+            res.send({code: 200, mensaje: "Datos creados!"})
         }
     })
 
     connection.end()
 }
 
-const eliminarPedido = (uuid) => {
+const eliminarPedido = (uuid, res) => {
     const connection = newConn()
     const query = `DELETE FROM pedidos WHERE uuid = ?`
 
@@ -128,12 +129,13 @@ const eliminarPedido = (uuid) => {
         }
 
         console.log('Fila eliminada')
+        res.send({code: 200, mensaje: "Datos eliminados"})
     })
 
     connection.end()
 }
 
-const actualizarPedido = (id, data) => {
+const actualizarPedido = (id, data, res) => {
     const connection = newConn()
 
     const query = `UPDATE pedidos
@@ -143,9 +145,8 @@ const actualizarPedido = (id, data) => {
         numero = ?, 
         piso = ?, 
         tel = ?, 
-        delivery = ?, 
-        json_products = ?,
-    WHERE id_pedido = ?`
+        delivery = ?
+    WHERE id = ?`
 
     const values = [
         data.nombre,
@@ -155,7 +156,6 @@ const actualizarPedido = (id, data) => {
         data.piso,
         data.tel,
         data.delivery,
-        JSON.stringify(data.productos),
         id
     ]
 
@@ -166,6 +166,7 @@ const actualizarPedido = (id, data) => {
             throw err
         } else {
             console.log('Fila actualizada!')
+            res.send({code: 200, mensaje: "Datos actualizados!"})
         }
     })
 
@@ -239,6 +240,63 @@ const bajaConsulta = (id) => {
     connection.end()
 }
 
+
+// ------ METODOS PARA USUARIOS ---------------------
+
+const consultaUsuario = (user, callbakc) => {
+
+    const connection = newConn()
+    const query = `SELECT * FROM usuarios WHERE user = ?`
+
+    const values = [user]
+
+    connection.query(query, values, callbakc)
+}
+
+const altaUsuario = (data) => {
+    const connection = newConn()
+
+    const query = `INSERT INTO usuarios
+    (user, pass)
+    VALUES (?, ?)`
+
+    const values = [
+        data.user,
+        data.pass
+    ]
+
+    connection.query(query, values, (err) => {
+    
+        if (err) {
+            console.error('Error ejecutando la consulta')
+            throw err
+        } else {
+            console.log('Fila insertada!')
+        }
+    })
+
+    connection.end()
+}
+
+const bajaUsuario = (user) => {
+    const connection = newConn()
+    const query = `DELETE FROM usuarios WHERE user = ?`
+
+    const values = [user]
+
+    connection.query(query, values, (err) => {
+    
+        if (err) {
+            console.error('Error ejecutando la consulta')
+            throw err
+        }
+
+        console.log('Fila eliminada')
+    })
+
+    connection.end()
+}
+
 // --------------------------------------------------
 
 module.exports = {
@@ -250,5 +308,8 @@ module.exports = {
     actualizarPedido,
     listarConsultas,
     altaConsulta,
-    bajaConsulta
+    bajaConsulta,
+    consultaUsuario,
+    altaUsuario,
+    bajaUsuario
 }

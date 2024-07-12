@@ -6,22 +6,21 @@ const listaPedido = (req, res) => {
 
 const altaPedido = (req, res) => {
     const data = req.body
-    a = db.altaPedido(data)
-    res.send("Alta exitosa!")
+    a = db.altaPedido(data, res)
 }
 
 const modificacionPedido = (req, res) => {
     const data = req.body
     const { id } = req.params
 
-    db.actualizarPedido(id, data)
-    res.send("Actualizacion exitosa!")
+    db.actualizarPedido(id, data, res)
 }
 
 const borrarPedido = (req, res) => {
-    const { id } = req.params
-    db.eliminarPedido(id)
-    res.send("Baja con exito!")
+    
+    const { uuid } = req.params
+
+    db.eliminarPedido(uuid, res)
 }
 
 module.exports = { listaPedido, altaPedido, modificacionPedido, borrarPedido }

@@ -1,12 +1,13 @@
 const { Router } = require("express")
+const middewares = require("../middlewares/autorizacion")
 
 const pedidos = require("../controller/controllerPedidos")
 
 const routerPedidos = Router()
 
-routerPedidos.get("/", pedidos.listaPedido)
+routerPedidos.get("/", middewares.soloAdmin, pedidos.listaPedido)
 routerPedidos.post("/", pedidos.altaPedido)
-routerPedidos.put("/:id", pedidos.modificacionPedido)
-routerPedidos.delete("/:id", pedidos.borrarPedido)
+routerPedidos.put("/:id", middewares.soloAdmin, pedidos.modificacionPedido)
+routerPedidos.delete("/:uuid", middewares.soloAdmin, pedidos.borrarPedido)
 
 module.exports = routerPedidos

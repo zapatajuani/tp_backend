@@ -1,18 +1,12 @@
 const { Router } = require("express")
+const middewares = require("../middlewares/autorizacion")
 
-const controladorLoggin = require("../controller/controllerLoggin")
+const controladorUsers = require("../controller/controllerUsers")
 
-const routerLoggin = Router()
+const routerUsers = Router()
 
-routerLoggin.get("/verificacion", controladorLoggin.a)
+routerUsers.post("/verificar", controladorUsers.verificarUsuario)
+routerUsers.post("/crear", middewares.soloAdmin, controladorUsers.crearUsuario)
+routerUsers.delete("/", middewares.soloAdmin, controladorUsers.eliminarUsuario)
 
-module.exports = routerLoggin
-
-/* 
-    Se necesita completar el loggin
-    verificar loggin y devolver cookie o redireccionar
-    agregar middewares para verificar rutas privadas
-        y redireccionar si es necesario
-    
-    terminar admin page
-*/
+module.exports = routerUsers

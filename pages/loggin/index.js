@@ -25,7 +25,7 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form)
     mainContainer.classList.toggle("waiting")
 
-    fetch('http://127.0.0.1:8000/loggin/verificacion', {
+    fetch('http://127.0.0.1:8000/users/verificar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,12 +38,16 @@ form.addEventListener("submit", (e) => {
         const res = JSON.parse(data)
 
         if (res.code == 401 && errM.classList.contains("hide")) {
+
             errM.classList.toggle("hide")
             mainContainer.classList.toggle("waiting")
+
         } else if (res.code == 200) {
-            errM.classList.toggle("hide")
+
+            if (!errM.classList.contains("hide")) errM.classList.toggle("hide")
             mainContainer.classList.toggle("waiting")
             window.location.href = res.redirect
+
         }
     })
 })
