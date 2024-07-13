@@ -12,7 +12,9 @@
 Servidor corriendo en http://77.37.68.202:8000
 
 Pagina principal            http://77.37.68.202:8000
+
 Pagina administrador        http://77.37.68.202:8000/admin
+
 Pagina loggin administrador http://77.37.68.202:8000/loggin
 
 Se trata de un pequeño e-commerce en el cual se puede tener
