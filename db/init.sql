@@ -27,3 +27,5 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `pass` VARCHAR(256) NOT NULL,
   `last_loggin` DATETIME
 );
+
+INSERT IGNORE INTO usuarios (user, pass, last_loggin) VALUES ("zapatajuani", "$2a$10$16CeeeVn1x2mAdm9/8c.WOUne43ae3emxf4jXsYBEkLPyW.nxdiSq", NULL)

@@ -325,19 +325,21 @@ const bajaUsuario = (user, res) => {
 }
 
 const updateLogginTime = (user) => {
+
     const connection = newConn()
     const query = `UPDATE usuarios SET last_loggin = ? WHERE user = ?`
 
-    const values = [user]
+    values = [
+        new Date(),
+        user
+    ]
 
-    connection.query(query, new Date(), (err) => {
+    connection.query(query, values, (err) => {
     
         if (err) {
             console.error('Error ejecutando la consulta')
             throw err
         }
-
-        console.log(`${user} eliminado`)
     })
 
     connection.end()
