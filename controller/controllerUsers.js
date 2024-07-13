@@ -42,6 +42,7 @@ const verificarUsuario = async (req, res) => {
                 path: "/"
             }
 
+            db.updateLogginTime(req.body.user)
             res.cookie("jwt", token, cookie_option)
             res.send({code: 200, redirect: "/admin"})
         } else {
@@ -53,8 +54,13 @@ const verificarUsuario = async (req, res) => {
 }
 
 const eliminarUsuario = (req, res) => {
-    db.eliminarUsuario(req, res)
+    const { user } = req.params
+    db.bajaUsuario(user, res)
 }
 
-module.exports = { crearUsuario, verificarUsuario, eliminarUsuario }
+const getUsuarios = (req, res) => {
+    db.listarUsuarios(res)
+}
+
+module.exports = { crearUsuario, verificarUsuario, eliminarUsuario, getUsuarios }
 

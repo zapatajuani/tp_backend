@@ -1,20 +1,17 @@
 const db = require("../db/db")
 
 const listaConsultas = (req, res) => {
-    db.listarConsultas()
-    res.send("Listado exitoso")
+    db.listarConsultas(res)
 }
 
 const altaConsultas = (req, res) => {
     const data = req.body
-    db.altaConsulta(data)
-    res.send("Alta exitosa!")
+    db.altaConsulta(data, res)
 }
 
 const borrarConsultas = (req, res) => {
-    const { id } = req.params
-    db.bajaConsulta(id)
-    res.send("Baja con exito!")
+    const { uuid } = req.params
+    db.bajaConsulta(uuid, res)
 }
 
 module.exports = { listaConsultas, altaConsultas, borrarConsultas }

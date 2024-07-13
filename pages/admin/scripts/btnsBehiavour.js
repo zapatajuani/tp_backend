@@ -3,10 +3,8 @@ const accionEliminar = (btn) => {
 
     if (rta) {
         const uuid = btn.getAttribute('data-uuid')
-
-        const url = `http://127.0.0.1:8000/pedidos/${uuid}`
     
-        fetch(url, {
+        fetch(`${url}pedidos/${uuid}`, {
             method: 'DELETE',
         })
         .then(response => {
@@ -18,6 +16,7 @@ const accionEliminar = (btn) => {
         .then(data => {
             console.log('Respuesta exitosa:', data)
             alert("Pedido eliminado exitosamente!")
+            location.reload()
         })
         .catch(error => {
             console.error('Error:', error)
@@ -30,10 +29,8 @@ const accionFinalizar = (btn) => {
 
     if (rta) {
         const uuid = btn.getAttribute('data-uuid')
-
-        const url = `http://127.0.0.1:8000/pedidos/${uuid}`
     
-        fetch(url, {
+        fetch(`${url}pedidos/${uuid}`, {
             method: 'DELETE',
         })
         .then(response => {
@@ -45,6 +42,7 @@ const accionFinalizar = (btn) => {
         .then(data => {
             console.log('Respuesta exitosa:', data)
             alert("Pedido finalizado!")
+            location.reload()
         })
         .catch(error => {
             console.error('Error:', error)
@@ -63,7 +61,6 @@ const accionEditar = (btn) => {
     const piso = document.getElementById(`piso-${uuid}`)
     const tel = document.getElementById(`tel-${uuid}`)
     const delivery = document.getElementById(`delivery-${uuid}`)
-    const id = document.getElementById(`titulo-${uuid}`).getAttribute("data-id")
 
     if (state == "desactivado") {
         btn.setAttribute("data-state", "activo")
@@ -97,10 +94,8 @@ const accionEditar = (btn) => {
             tel: tel.value,
             delivery: delivery.value == "DELIVERY" ? true : false,
         }
-
-        const url = `http://127.0.0.1:8000/pedidos/${Number(id)}`
  
-        fetch(url, {
+        fetch(`${url}pedidos/${uuid}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'

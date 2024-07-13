@@ -7,6 +7,6 @@ const routerConsultas = Router()
 
 routerConsultas.get("/", middewares.soloAdmin, consultas.listaConsultas)
 routerConsultas.post("/", consultas.altaConsultas)
-routerConsultas.delete("/:id", middewares.soloAdmin, consultas.borrarConsultas)
+routerConsultas.delete("/:uuid", middewares.soloAdmin, consultas.borrarConsultas)
 
 module.exports = routerConsultas

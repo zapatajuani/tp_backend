@@ -85,6 +85,11 @@ mensaje.addEventListener("blur", (e) => {
 
 /* ------ Carga de formulario ------- */
 
+const protocol = window.location.protocol
+const hostname = window.location.hostname
+const port = window.location.port
+const url = `${protocol}//${hostname}${port ? ":"+port : "" }/`
+
 document.querySelector("#contactanos-form").addEventListener("submit", (e) => {
 
     if ((!nombreFlag && !apellidoFlag && !emailFlag1 && !emailFlag2 && !mensajeFlag) &&
@@ -101,7 +106,7 @@ document.querySelector("#contactanos-form").addEventListener("submit", (e) => {
             mensaje: mensaje.value
         }
 
-        fetch(`http://${envVarsDicc.host}:${envVarsDicc.port}/consultas`, {
+        fetch(`${url}consultas`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

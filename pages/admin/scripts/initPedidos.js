@@ -1,5 +1,10 @@
 const mainContainerPedidos = document.querySelector(".main-container")
 
+const protocol = window.location.protocol
+const hostname = window.location.hostname
+const port = window.location.port
+const url = `${protocol}//${hostname}${port ? ":"+port : "" }/`
+
 const getHTMLelement = (dicc, lista, total, delivery) => { 
     let htmlElemet =
     `<div class="tarjeta-pedido">
@@ -60,32 +65,40 @@ const getHTMLelement = (dicc, lista, total, delivery) => {
     return htmlElemet
 }
 
-fetch("http://127.0.0.1:8000/pedidos")
-    .then(data => data.text())
-    .then((data) => {
-        for (const item of JSON.parse(data)) {
-
-            const pedido = item.json_products
-            let listaProductos = ""
-            let delivery = "TAKE-AWAY"
-            let total = 0
-
-            Object.keys(pedido).forEach((key) => {
-                total += pedido[key].total
-
-                listaProductos = listaProductos + `
-                <li class="producto-pedido">
-                    <p>${productsDicc[key].name} x ${pedido[key].quantity}</p>
-                    <p>${formatearPrecio(pedido[key].total)}</p>
-                </li>`
-            })
-            
-            if (item.delivery) {
-                delivery = "DELIVERY"
+const getPedidos = () => {
+    fetch(`${url}pedidos`)
+        .then(data => data.text())
+        .then((data) => {
+            for (const item of JSON.parse(data)) {
+    
+                const pedido = item.json_products
+                let listaProductos = ""
+                let delivery = "TAKE-AWAY"
+                let total = 0
+    
+                Object.keys(pedido).forEach((key) => {
+                    total += pedido[key].total
+    
+                    listaProductos = listaProductos + `
+                    <li class="producto-pedido">
+                        <p>${productsDicc[key].name} x ${pedido[key].quantity}</p>
+                        <p>${formatearPrecio(pedido[key].total)}</p>
+                    </li>`
+                })
+                
+                if (item.delivery) {
+                    delivery = "DELIVERY"
+                }
+    
+                mainContainerPedidos.insertAdjacentHTML("beforeend", getHTMLelement(item, listaProductos, total, delivery))
             }
-
-            mainContainerPedidos.insertAdjacentHTML("beforeend", getHTMLelement(item, listaProductos, total, delivery))
-        }
-    })
+        })
+}
 
 
+getPedidos()
+
+setInterval(() => {
+    mainContainerPedidos.innerHTML = ''
+    getPedidos()
+}, 60000)

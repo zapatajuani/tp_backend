@@ -1,6 +1,3 @@
-let envVars = sessionStorage.getItem('env')
-let envVarsDicc = JSON.parse(envVars)
-
 let rbtnDelivery = document.getElementById("delivery-btn")
 let rbtnTakeaway = document.getElementById("takeaway-btn")
 
@@ -45,6 +42,11 @@ rbtnTakeaway.addEventListener("click", (e) => {
 
 /* ------ Carga de formulario ------- */
 
+const protocol = window.location.protocol
+const hostname = window.location.hostname
+const port = window.location.port
+const url = `${protocol}//${hostname}${port ? ":"+port : "" }/`
+
 document.querySelector("#form-paga").addEventListener("submit", (e) => {
     e.preventDefault()
 
@@ -76,7 +78,7 @@ document.querySelector("#form-paga").addEventListener("submit", (e) => {
             productos: carritoDicc
         }
 
-        fetch(`http://${envVarsDicc.host}:${envVarsDicc.port}/pedidos`, {
+        fetch(`${url}pedidos`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

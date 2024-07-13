@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../icons/burger.ico" type="image/x-icon">
     <!-- ESTILOS -->
-    <link rel="stylesheet" href="../styles/pedidos.css">
+    <link rel="stylesheet" href="../styles/administracion.css">
 </head>
 <body>
     <div class="loader"></div>
@@ -35,12 +35,33 @@
         </nav>
     </header>
 
-    <div class="main-container"></div>
+    <div class="main-container">
 
-    <script src="../scripts/formatPrecio.js"></script>
-    <script src="../scripts/dicc.js"></script>
+        <div class="panel-control">
+            
+            <form class="formulario" action="">
+                <label class="label-form" for="usuario">Usuario:</label>
+                <input class="input-form" id="new-user" type="text" name="usuario" placeholder="Usuario..." autocomplete="username">
+    
+                <label class="label-form" for="pass">Contraseña:</label>
+                <input class="input-form" id="new-pass" type="password" name="pass" placeholder="Contraseña..." autocomplete="new-password">
+
+                <label class="label-form" for="pass">Repetir contraseña:</label>
+                <input class="input-form" id="r-new-pass" type="password" name="pass" placeholder="Contraseña..." autocomplete="new-password">
+            </form>
+    
+            <button class="boton" id="userCreation">CREAR</button>
+
+        </div>
+
+
+        <div class="lista-usuarios">
+
+        </div>
+
+    </div>
+
     <script src="../scripts/loader.js"></script>
-    <script src="../scripts/initPedidos.js"></script>
-    <script src="../scripts/btnsBehiavour.js"></script>
+    <script src="../scripts/administracion.js"></script>
 </body>
 </html>

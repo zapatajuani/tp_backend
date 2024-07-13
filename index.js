@@ -5,7 +5,7 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const routerPedidos = require("./routes/rutaPedidos")
 const routerConsultas = require("./routes/rutaConsultas")
-const routerLoggin = require("./routes/rutaLoggin")
+const routerUsuarios = require("./routes/rutaUsuarios")
 const middewares = require("./middlewares/autorizacion")
 const db = require("./db/db")
 
@@ -27,7 +27,7 @@ app.use("/admin", middewares.soloAdmin, express.static("./pages/admin"))
 
 /* ------------ METODOS / ENDPOINTS ----------- */
 
-app.use("/users", routerLoggin)
+app.use("/users", routerUsuarios)
 app.use("/pedidos", routerPedidos)
 app.use("/consultas", routerConsultas)
 

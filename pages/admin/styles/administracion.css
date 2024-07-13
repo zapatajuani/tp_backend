@@ -9,6 +9,7 @@
     padding: 0;
     margin: 0;
     color: #f0f0f0;
+    font-size: 20px;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
     height: 100vh;
     overflow-x: hidden;
 }
+
 
 /* -------------------------------------------------------------------- */
 /* --------------------------- HEADER --------------------------------- */
@@ -85,129 +87,146 @@ header {
 }
 
 /* -------------------------------------------------------------------- */
-/* --------------------------- TAREJTA DE PEDIDOS --------------------- */
 
 .main-container {
     width: 100%;
 
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.tarjeta-pedido {
-    width: 30%;
-    height: auto;
-    margin: 12px;
-    padding: 15px;
+/* -------------------------------------------------------------------- */
+/* --------------------------- PANEL CONTROL -------------------------- */
 
-    border-radius: 5px;
+.panel-control {
+    width: 95%;
+    height: 100px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: start;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 
-    gap: 35px;
+    background-color: #303030;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.formulario {
+    flex-grow: 0.7;
+
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-right: 10px;
 
     background-color: #303030;
 }
 
-.pedido-titulo {
-    font-size: 30px;
-}
-
-.formulario-pedido {
-    width: 100%;
-    display: flex;
-
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-
-    gap: 5px;
-}
-
-.div-label {
-    font-weight: 700;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    font-size: 25px;
-    gap: 20px;
-}
-
-.etiqueta-label {
-    width: 20%;
-}
-
-.campo-dato-cliente {
+.input-form {
     width: auto;
 
     border: none;
     border-radius: 3px;
-    font-size: 25px;
     background-color: transparent;
 
     outline: 1px solid transparent;
     transition: outline-color 0.3s linear;
+
+    padding: 10px;
 }
 
-.campo-dato-cliente:focus {
+.input-form:focus {
     outline: 2px solid #1BCE4E;
 }
 
-.pedido {
-    width: 90%;
-    font-size: 25px;
-    list-style: none;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 10px;
+@keyframes pulsate {
+    0% {
+        box-shadow: 0 0 10px 5px #CF1B1B;
+    }
+    50% {
+        box-shadow: 0 0 20px 10px #CF1B1B;
+    }
+    100% {
+        box-shadow: 0 0 10px 5px #CF1B1B;
+    }
 }
-
-.producto-pedido {
-    display: flex;
-    justify-content: space-between;
-}
-
-.total-pedido {
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-}
-
-.botonera {
-    width: 80%;
-
-    display: flex;
-    justify-content: space-around;
+.alarm {
+    animation: pulsate 1s infinite;
 }
 
 .boton {
-    font-weight: 700;
+    flex-grow: 0.3;
+
+    font-weight: 500;
     height: 35px;
-    width: 30%;
+    width: 10%;
+
     border: none;
     border-radius: 3px;
     cursor: pointer;
-}
-
-.edi {
-    background-color: #CF841B;
-}
-
-.del {
-    background-color: #CF1B1B;
-}
-
-.end {
     background-color: #1BCF4E;
+}
+
+/* -------------------------------------------------------------------- */
+/* --------------------------- LISTA USUARIOS ------------------------- */
+
+.lista-usuarios {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    margin-top: 10px;
+
+    gap: 10px;
+}
+
+.tarjeta-usuario {
+    border-radius: 5px;
+    background-color: #303030;
+    width: 220px;
+    height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 10px;
+
+    position: relative;
+
+}
+
+.cerrar {
+    position: absolute;
+    left: 190px;
+    bottom: 180px;
+
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.cerrar:hover {
+    color: #CF1B1B;
+}
+
+.separadores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-title {
+    font-weight: 500;
 }

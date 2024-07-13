@@ -1,6 +1,6 @@
 const db = require("mysql2")
 const fs = require("fs")
-const uuid = require("uuid")
+const uuidModule = require("uuid")
 const dotenv = require("dotenv")
 dotenv.configDotenv()
 
@@ -77,7 +77,7 @@ const listarPedidos = (res) => {
             throw err
         }
 
-        res.json(rows) 
+        res.json(rows)
     })
     connection.end()
 }
@@ -89,8 +89,10 @@ const altaPedido = (data, res) => {
     (uuid, nombre, apellido, calle, numero, piso, tel, delivery, json_products)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
+    const uuid = uuidModule.v6()
+
     const values = [
-        uuid.v6(),
+        uuid,
         data.nombre,
         data.apellido,
         data.calle,
@@ -101,13 +103,13 @@ const altaPedido = (data, res) => {
         JSON.stringify(data.productos)
     ]
 
-    connection.query(query, values, (err) => {
+    connection.query(query, values, (err, results) => {
     
         if (err) {
             console.error('Error ejecutando la consulta')
             throw err
         } else {
-            console.log('Fila insertada!')
+            console.log(`Pedido ingresado - UUID: ${uuid}`)
             res.send({code: 200, mensaje: "Datos creados!"})
         }
     })
@@ -128,14 +130,14 @@ const eliminarPedido = (uuid, res) => {
             throw err
         }
 
-        console.log('Fila eliminada')
+        console.log(`Pedido eliminado - UUID: ${uuid}`)
         res.send({code: 200, mensaje: "Datos eliminados"})
     })
 
     connection.end()
 }
 
-const actualizarPedido = (id, data, res) => {
+const actualizarPedido = (uuid, data, res) => {
     const connection = newConn()
 
     const query = `UPDATE pedidos
@@ -146,7 +148,7 @@ const actualizarPedido = (id, data, res) => {
         piso = ?, 
         tel = ?, 
         delivery = ?
-    WHERE id = ?`
+    WHERE uuid = ?`
 
     const values = [
         data.nombre,
@@ -156,7 +158,7 @@ const actualizarPedido = (id, data, res) => {
         data.piso,
         data.tel,
         data.delivery,
-        id
+        uuid
     ]
 
     connection.query(query, values, (err) => {
@@ -165,7 +167,7 @@ const actualizarPedido = (id, data, res) => {
             console.error('Error ejecutando la consulta')
             throw err
         } else {
-            console.log('Fila actualizada!')
+            console.log(`Pedido actualizado - UUID: ${uuid}`)
             res.send({code: 200, mensaje: "Datos actualizados!"})
         }
     })
@@ -175,7 +177,7 @@ const actualizarPedido = (id, data, res) => {
 
 // ------ METODOS PARA CONSULTAS --------------------
 
-const listarConsultas = () => {
+const listarConsultas = (res) => {
     const connection = newConn()
     const query = `SELECT * FROM consultas`
 
@@ -186,21 +188,23 @@ const listarConsultas = () => {
             throw err
         }
 
-        console.log(rows)
+        res.json(rows)
     })
 
     connection.end()
 } 
 
-const altaConsulta = (data) => {
+const altaConsulta = (data, res) => {
     const connection = newConn()
 
     const query = `INSERT INTO consultas
     (uuid, nombre, apellido, mail, motivo, mensaje)
     VALUES (?, ?, ?, ?, ?, ?)`
 
+    const uuidValue = uuidModule.v6() 
+
     const values = [
-        uuid.v6(),
+        uuidValue,
         data.nombre,
         data.apellido,
         data.mail,
@@ -214,18 +218,19 @@ const altaConsulta = (data) => {
             console.error('Error ejecutando la consulta')
             throw err
         } else {
-            console.log('Fila insertada!')
+            console.log(`Consulta ingresado - UUID: ${uuidValue}`)
+            res.send({code: 200, mensaje: "Datos creados!"})
         }
     })
 
     connection.end()
 }
 
-const bajaConsulta = (id) => {
+const bajaConsulta = (uuid, res) => {
     const connection = newConn()
-    const query = `DELETE FROM consultas WHERE id = ?`
+    const query = `DELETE FROM consultas WHERE uuid = ?`
 
-    const values = [id]
+    const values = [uuid]
 
     connection.query(query, values, (err) => {
     
@@ -234,7 +239,8 @@ const bajaConsulta = (id) => {
             throw err
         }
 
-        console.log('Fila eliminada')
+        console.log(`Consulta eliminada - UUID: ${uuid}`)
+        res.send({code: 200, mensaje: "Datos eliminados"})
     })
 
     connection.end()
@@ -242,6 +248,25 @@ const bajaConsulta = (id) => {
 
 
 // ------ METODOS PARA USUARIOS ---------------------
+
+const listarUsuarios = (res) => {
+    const connection = newConn()
+
+    const columns = ['user', 'last_loggin'] // Reemplaza con los nombres de las columnas que quieres seleccionar
+    const query = `SELECT ${columns.join(', ')} FROM usuarios`
+
+    connection.query(query, (err, rows) => {
+    
+        if (err) {
+            console.error('Error ejecutando la consulta')
+            throw err
+        }
+
+        res.json(rows)
+    })
+
+    connection.end()
+}
 
 const consultaUsuario = (user, callbakc) => {
 
@@ -257,12 +282,13 @@ const altaUsuario = (data) => {
     const connection = newConn()
 
     const query = `INSERT INTO usuarios
-    (user, pass)
-    VALUES (?, ?)`
+    (user, pass, last_loggin)
+    VALUES (?, ?, ?)`
 
     const values = [
         data.user,
-        data.pass
+        data.pass,
+        new Date()
     ]
 
     connection.query(query, values, (err) => {
@@ -271,14 +297,14 @@ const altaUsuario = (data) => {
             console.error('Error ejecutando la consulta')
             throw err
         } else {
-            console.log('Fila insertada!')
+            console.log(`Usuario ${data.user} creado`)
         }
     })
 
     connection.end()
 }
 
-const bajaUsuario = (user) => {
+const bajaUsuario = (user, res) => {
     const connection = newConn()
     const query = `DELETE FROM usuarios WHERE user = ?`
 
@@ -291,7 +317,27 @@ const bajaUsuario = (user) => {
             throw err
         }
 
-        console.log('Fila eliminada')
+        console.log(`${user} eliminado`)
+        res.send({code: 200, mensaje: "Datos eliminados"})
+    })
+
+    connection.end()
+}
+
+const updateLogginTime = (user) => {
+    const connection = newConn()
+    const query = `UPDATE usuarios SET last_loggin = ? WHERE user = ?`
+
+    const values = [user]
+
+    connection.query(query, new Date(), (err) => {
+    
+        if (err) {
+            console.error('Error ejecutando la consulta')
+            throw err
+        }
+
+        console.log(`${user} eliminado`)
     })
 
     connection.end()
@@ -311,5 +357,7 @@ module.exports = {
     bajaConsulta,
     consultaUsuario,
     altaUsuario,
-    bajaUsuario
+    bajaUsuario,
+    updateLogginTime,
+    listarUsuarios
 }

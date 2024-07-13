@@ -4,6 +4,11 @@ const pass = document.querySelector("#password")
 const errM = document.querySelector("#input-error")
 const mainContainer = document.querySelector("#loggin-container")
 
+const protocol = window.location.protocol
+const hostname = window.location.hostname
+const port = window.location.port
+const url = `${protocol}//${hostname}${port ? ":"+port : "" }/`
+
 window.addEventListener("load", () => {
 
     const loader = document.querySelector(".loader");
@@ -25,7 +30,7 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form)
     mainContainer.classList.toggle("waiting")
 
-    fetch('http://127.0.0.1:8000/users/verificar', {
+    fetch(`${url}users/verificar`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

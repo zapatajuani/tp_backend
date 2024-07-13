@@ -11,9 +11,9 @@ const altaPedido = (req, res) => {
 
 const modificacionPedido = (req, res) => {
     const data = req.body
-    const { id } = req.params
+    const { uuid } = req.params
 
-    db.actualizarPedido(id, data, res)
+    db.actualizarPedido(uuid, data, res)
 }
 
 const borrarPedido = (req, res) => {
